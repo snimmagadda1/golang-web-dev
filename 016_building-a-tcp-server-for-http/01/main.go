@@ -43,8 +43,8 @@ func request(conn net.Conn) {
 		fmt.Println(ln)
 		if i == 0 {
 			// request line
-			m := strings.Fields(ln)[0]
-			fmt.Println("***METHOD", m)
+			m := strings.Fields(ln)[1]
+			fmt.Println("***URI BITCHES", m)
 		}
 		if ln == "" {
 			// headers are done

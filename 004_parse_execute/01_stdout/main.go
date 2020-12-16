@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	// Pointer to a template is "a container holding all the templates parsed"
 	tpl, err := template.ParseFiles("tpl.gohtml")
 	if err != nil {
 		log.Fatalln(err)

@@ -7,8 +7,10 @@
 <body>
 
 {{range .}}
-
-<!-- PUT YOUR CODE HERE TO SHOW THE DATA-->
+    {{.Fall.Term}} {{.AcaYear}}
+    {{range .Fall.Courses}}}
+    {{.Number .Name .Units }}<br>
+    {{end}}}
 
 {{end}}
 

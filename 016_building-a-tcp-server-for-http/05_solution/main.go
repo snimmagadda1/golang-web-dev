@@ -3,10 +3,17 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"html/template"
 	"log"
 	"net"
 	"strings"
 )
+
+var tpl *template.Template
+
+func init() {
+	tpl = template.Must(template.ParseGlob("templates/*.html"))
+}
 
 func main() {
 	li, err := net.Listen("tcp", ":8080")
@@ -84,7 +91,11 @@ func index(conn net.Conn) {
 	fmt.Fprintf(conn, "Content-Length: %d\r\n", len(body))
 	fmt.Fprint(conn, "Content-Type: text/html\r\n")
 	fmt.Fprint(conn, "\r\n")
-	fmt.Fprint(conn, body)
+	err := tpl.ExecuteTemplate(conn, "pennyIndex.html", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	// fmt.Fprint(conn, body)
 }
 
 func about(conn net.Conn) {
